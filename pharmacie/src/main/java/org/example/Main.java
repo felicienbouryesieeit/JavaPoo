@@ -6,7 +6,20 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-        Product product = new Product("croissant",3,1,"food");
+
+        StockProduct products = new StockProduct();
+        products.addProduct("Doliprane 500mg",3,9.5,"Médicament");
+        products.showProducts();
+        products.productSearch("Doliprane 500mg");
+        products.removeProduct(1);
+        products.addProductRequest();
+        products.showProducts();
+
+
+
+
+
+
+
     }
 }
