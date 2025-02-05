@@ -1,40 +1,48 @@
 package org.example;
 
-public class produits {
+public class Product {
     private String name;
     private int quantity;
     private double price;
-    private int category;
+    private static int idCounter = 1;
+    private int index;
+    private Category category;
 
-    public produits(String name, int quantity, double price, int category) {
+    public Product(String name, int quantity, double price, String categoryName) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
-        this.category = category;
+        this.index = idCounter++;
+        this.category = new Category(categoryName);
     }
     public String getName() {
         return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getQuantity() {
         return quantity;
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
-    public int getCategory() {
+
+    public Category getCategory() {
         return category;
     }
-    public void setCategory(int category) {
-        this.category = category;
+
+    public int getIndex() {
+        return index;
     }
+
+
+
 }
