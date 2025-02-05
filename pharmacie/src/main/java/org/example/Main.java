@@ -8,12 +8,23 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
 
         StockProduct products = new StockProduct();
-        products.addProduct("Doliprane 500mg",3,9.5,"Médicament");
+        products.addProduct("Doliprane 500mg",6,9.5,"Médicament");
+        products.addProduct("Advil 500mg",3,9.5,"Médicament");
+        products.addProduct("Orange 500mg",1,9.5,"Médicament");
+        products.addProduct("Tomate 500mg",1945,9.5,"Médicament");
+        products.productQuantityCheck();
         products.showProducts();
+
+        
+
+        /*
         products.productSearch("Doliprane 500mg");
         products.removeProduct(1);
         products.addProductRequest();
         products.showProducts();
+        */
+
+
 
 
 

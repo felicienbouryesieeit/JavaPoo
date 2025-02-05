@@ -98,7 +98,7 @@ class StockProduct implements Stockable {
         } else {
             System.out.println("Produits disponibles :");
             for (Product p : inventory) {
-                System.out.println(p.getIndex() + " - " + p.getName() + " - " + p.getPrice() + " - " + p.getCategory().getName() + " - " + p.getQuantity() );
+                System.out.println(p.getName() + " (id: " + p.getIndex() + ")" + " - " + p.getPrice() + "€ - Quantité: " + p.getQuantity() + " - " + p.getCategory().getName());
             }
         }
     }
@@ -143,7 +143,35 @@ class StockProduct implements Stockable {
         return null;
     }
 
+    public void productQuantityCheck() {
+        ArrayList<Product> inventory2 = new ArrayList<>(inventory);
+        int n = inventory2.size();
 
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                // Comparaison des quantités des produits
+                if (inventory2.get(j).getQuantity() > inventory2.get(j + 1).getQuantity()) {
+                    // Échange des produits j et j+1
+                    Product temp = inventory2.get(j);
+                    inventory2.set(j, inventory2.get(j + 1));
+                    inventory2.set(j + 1, temp);
+                }
+            }
+        }
+
+        if (inventory2.isEmpty()) {
+            System.out.println("L'inventaire est vide.");
+        } else {
+            System.out.println("Produits disponibles :");
+            for (Product p : inventory2) {
+                if (p.getQuantity()>5) {
+                    System.out.println(p.getQuantity() + " - "+ p.getName() + " (id: " + p.getIndex() + ")" + " - " + p.getPrice() + "€ - " + p.getCategory().getName());
+                } else {
+                    System.out.println("/!\\ " + p.getQuantity() + " - "+ p.getName() + " (id: " + p.getIndex() + ")" + " - " + p.getPrice() + "€ - " + p.getCategory().getName());
+                }
+            }
+        }
+    }
 
 public ArrayList<Product> getInventory() {
         return inventory;
