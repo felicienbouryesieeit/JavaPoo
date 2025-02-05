@@ -2,5 +2,5 @@ package org.example;
 
 public interface Stockable {
 
-    void addStockable();
+    void addProduct(String name, int quantity, Double price, String categoryName);
 }
