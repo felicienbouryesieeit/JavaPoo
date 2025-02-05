@@ -1,19 +1,23 @@
 package org.example;
 
 import java.util.ArrayList;
+impoer java.util.Scanner;
 
 class StockProduit implements Stockable {
     private ArrayList<Product> inventory = new ArrayList<>();
 
     @Override
     public void addProduct(String name, int quantity, Double price, String categoryName) {
-        if ((price > 0) && (quantity>0)) {
+        if ((price > 0) && (quantity > 0)) {
             if ((name != null && !name.isEmpty()) && (categoryName != null && !categoryName.isEmpty())) {
-                Product product = new Product(name,quantity,price,categoryName);
+                Product product = new Product(name, quantity, price, categoryName);
                 inventory.add(product);
             }
         }
+    }
 
+    @Override
+    public void removeProduct(int id) {
 
 
 
