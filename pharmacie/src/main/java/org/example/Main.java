@@ -30,6 +30,23 @@ public class Main {
         standard2.validateOrder(products);
 
         standard2.displayOrderLog();
+
+        StockUser stockUser = new StockUser();
+        stockUser.addUser("michel","banane0",0);
+        stockUser.addUser("louis","tomate0",1);
+        stockUser.addUser("emilie","patate1",2);
+        stockUser.showinventory();
+
+
+        if (stockUser.getInventory().get(2) instanceof UserAdmin) {
+            UserAdmin userAdmin = (UserAdmin) stockUser.getInventory().get(2) ;
+            userAdmin.removeUserAdmin(0);
+            //((stockUser.getInventory().get(2)) UserAdmin).removeUserAdmin(0);
+        }
+        System.out.println("apres : ");
+        stockUser.showinventory();
+
+
         /*
         products.productSearch("Doliprane 500mg");
         products.removeProduct(1);
