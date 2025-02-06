@@ -33,7 +33,7 @@ public class Order {
     }
 
     public void validateOrder(StockProduct listproducts ) {
-        String orderLogText = ("Commande du : " + LocalDate.now() + " à " + LocalTime.now().withNano(0));
+        String orderLogText = ("Commande du : " + LocalDate.now() + " à " + LocalTime.now().withNano(0) + " : ");
 
         ArrayList<Product> allproducts =listproducts.getInventory();
         //System.out.println("pitre :"+allproducts.size()+"  "+productsName.size());
@@ -45,15 +45,21 @@ public class Order {
                 if (product1.getName().equals(product.getName())) {
                     itemtoremove=index;
                     itemtoremovequantity=product1.getQuantity();
-
                 }
                 index+=1;
             }
             if (itemtoremove!=-1) {
-            listproducts.removeProductOrder(itemtoremove,itemtoremovequantity);
+                orderLogText += ("\nProduit commandé : " + itemtoremovequantity + " " + allproducts.get(itemtoremove).getName() + " (id: " + allproducts.get(itemtoremove).getIndex() +
+                        ") " + allproducts.get(itemtoremove).getPrice() + "€ - " + allproducts.get(itemtoremove).getCategory().getName());
+                listproducts.removeProductOrder(itemtoremove,itemtoremovequantity);
             }
         }
-        System.out.println(orderLogText);
+        orderHistory.add(0,orderLogText);
+    }
 
+    public void displayOrderLog() {
+        for (String orderHistory : orderHistory) {
+            System.out.println(orderHistory);
+        }
     }
 }

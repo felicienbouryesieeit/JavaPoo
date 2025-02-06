@@ -23,6 +23,13 @@ public class Main {
         System.out.println("apres : ");
         products.showProducts();
 
+        OrderStandard standard2 = new OrderStandard();
+        standard2.addProduct("Orange 500mg",1,9.5,"Médicament");
+        standard2.addProduct("Tomate 500mg",3,9.5,"Médicament");
+
+        standard2.validateOrder(products);
+
+        standard2.displayOrderLog();
         /*
         products.productSearch("Doliprane 500mg");
         products.removeProduct(1);
