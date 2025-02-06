@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Order {
     ArrayList<Product> products=new ArrayList<>();
@@ -32,7 +33,7 @@ public class Order {
     }
 
     public void validateOrder(StockProduct listproducts ) {
-        String orderLogText = ("Commande du : " + LocalDate.now() + " à " + );
+        String orderLogText = ("Commande du : " + LocalDate.now() + " à " + LocalTime.now().withNano(0));
 
         ArrayList<Product> allproducts =listproducts.getInventory();
         //System.out.println("pitre :"+allproducts.size()+"  "+productsName.size());
