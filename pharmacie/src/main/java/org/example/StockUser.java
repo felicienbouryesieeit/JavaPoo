@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StockUser {
         private ArrayList<User> inventory= new ArrayList<>();
@@ -44,7 +45,61 @@ public class StockUser {
                                         " password : "+user.getPassword()+
                                         " type : "+user.getUsertype()
                         );
+
                 }
 
         }
+
+
+
+
+        public void connection() {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Entrez votre identifiant.");
+                String answer = scanner.nextLine().trim().toLowerCase();
+                boolean usernametrue = false;
+                User connectinguser = null;
+                for (User user : inventory) {
+                        System.out.println("nom : "+user.getUsername());
+                        if (answer.equals(user.getUsername())) {
+                                usernametrue = true;
+                                connectinguser = user;
+                        }
+                }
+                if (usernametrue) {
+                        System.out.println("Identifiant correct");
+                        connectionpassword(connectinguser);
+                } else {
+                        System.out.println("Identifiant incorrect");
+                }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public void connectionpassword(User connectinguser) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Entrez votre mot de passe.");
+                String answer = scanner.nextLine().trim().toLowerCase();
+
+
+                if (answer.equals(connectinguser.getPassword())) {
+                        connectinguser.setUserType();
+                        System.out.println("Connection reussie. Bienvenue "+connectinguser.getUsertype()+" "+connectinguser.getUsername()+"!" );
+                } else {
+                        System.out.println("Mot de passe incorrect");
+                }
+        }
+
+
+
+
         }

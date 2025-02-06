@@ -93,6 +93,7 @@ class StockProduct implements Stockable {
     public void removeProduct(int id) {
         Product product = null;
         for (Product p : inventory) {
+
             if (p.getIndex() == id) {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Êtes-vous sûr de vouloir supprimer le produit " + p.getName() + " à l'index " + p.getIndex() + "? (oui pour supprimer)");
