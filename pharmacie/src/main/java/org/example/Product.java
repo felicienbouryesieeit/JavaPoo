@@ -7,6 +7,7 @@ public class Product {
     private static int idCounter = 1;
     private int index;
     private Category category;
+    private StockProduct stockProduct;
 
     public Product(String name, int quantity, double price, String categoryName) {
         this.name = name;
@@ -42,6 +43,7 @@ public class Product {
     public int getIndex() {
         return index;
     }
+
 
 
 

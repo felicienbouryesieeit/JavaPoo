@@ -69,6 +69,25 @@ class StockProduct implements Stockable {
         System.out.println("Produit ajouté avec succès !");
     }
 
+    public void removeProductOrder(int id,int quantity) {
+
+        if (inventory.get(id).getQuantity()<quantity) {
+            System.out.println("Pas assez de "+inventory.get(id).getName()+"!");
+        } else {
+            inventory.get(id).setQuantity(inventory.get(id).getQuantity()-quantity);
+            if (inventory.get(id).getQuantity()==0) {
+                System.out.println("Plus de "+inventory.get(id).getName()+"!");
+                inventory.remove(id);
+            } else {
+                if (inventory.get(id).getQuantity()<5) {
+                    System.out.println(inventory.get(id).getName()+" bientot en rupture de stock!");
+                }
+            }
+        }
+
+        //inventory.remove(id);
+
+    }
 
     @Override
     public void removeProduct(int id) {

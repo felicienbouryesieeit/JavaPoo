@@ -15,7 +15,13 @@ public class Main {
         products.productQuantityCheck();
         products.showProducts();
 
-        
+        OrderStandard standard = new OrderStandard();
+        standard.addProduct("Doliprane 500mg",2,9.5,"Médicament");
+        standard.addProduct("Advil 500mg",3,9.5,"Médicament");
+
+        standard.validateOrder(products);
+        System.out.println("apres : ");
+        products.showProducts();
 
         /*
         products.productSearch("Doliprane 500mg");

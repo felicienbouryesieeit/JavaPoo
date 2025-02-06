@@ -1,9 +1,13 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Order {
-    ArrayList<Product> products;
+    ArrayList<Product> products=new ArrayList<>();
+    private static ArrayList<String> orderHistory=new ArrayList<>();
+
+
     protected String ordertype;
     public Order() {
 
@@ -28,17 +32,27 @@ public class Order {
     }
 
     public void validateOrder(StockProduct listproducts ) {
+        String orderLogText = ("Commande du : " + LocalDate.now() + " à " + );
 
         ArrayList<Product> allproducts =listproducts.getInventory();
-        for(Product product : allproducts) {
+        //System.out.println("pitre :"+allproducts.size()+"  "+productsName.size());
+        for(Product product1 : products) {
+            int itemtoremove=-1;
+            int itemtoremovequantity=0;
             int index=0;
-            for (Product product1 : products) {
-                if (product.getName().equals(product1.getName())) {
-                    listproducts.removeProduct(index);
+            for (Product product : allproducts) {
+                if (product1.getName().equals(product.getName())) {
+                    itemtoremove=index;
+                    itemtoremovequantity=product1.getQuantity();
+
                 }
                 index+=1;
             }
+            if (itemtoremove!=-1) {
+            listproducts.removeProductOrder(itemtoremove,itemtoremovequantity);
+            }
         }
+        System.out.println(orderLogText);
 
     }
 }
