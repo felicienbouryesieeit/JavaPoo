@@ -1,6 +1,7 @@
 package org.example;
 
-public class Category {
+public class Category implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String name;
 
     public Category(String name) {
@@ -9,6 +10,16 @@ public class Category {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void SaveFile() {
+
+    }
+
+    @Override
+    public void LoadFile() {
+
     }
 }
 ///Médicaments chimiques : Ce sont les médicaments les plus anciens et ils sont synthétisés en laboratoire. Ils peuvent être classés en fonction de leur action thérapeutique, comme les antibiotiques, les antalgiques, les antihypertenseurs, etc.

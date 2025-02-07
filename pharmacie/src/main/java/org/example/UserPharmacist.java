@@ -11,5 +11,16 @@ public class UserPharmacist extends User {
     public void setUserType() {
         super.setUserType();
         usertype="Pharmacist";
+        setUsertypeid(1);
+    }
+
+    @Override
+    public void SaveFile() {
+
+    }
+
+    @Override
+    public void LoadFile() {
+
     }
 }

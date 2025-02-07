@@ -1,13 +1,21 @@
 package org.example;
 
-public abstract class User implements UserType {
+public abstract class User implements UserType, Serializable {
+    private static final long serialVersionUID = 1L;
     protected String username;
     protected String password;
     protected String usertype;
     protected StockUser stockuser;
+    protected Integer usertypeid;
+
+    public Integer getUsertypeid() {
+        return usertypeid;
+    }
+    public void setUsertypeid(Integer usertypeid) {
+        this.usertypeid = usertypeid;
+    }
     @Override
     public void setUserType() {
-
     }
 
     public User(String username,String password,StockUser stockuser) {

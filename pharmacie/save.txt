@@ -1,0 +1,20 @@
+product
+Miaou 500mg
+6
+9.5
+Médicament
+product
+Doliprane 500mg
+2
+9.5
+Médicament
+product
+Orange 500mg
+1
+9.5
+Médicament
+product
+Tomate 500mg
+1945
+9.5
+Médicament

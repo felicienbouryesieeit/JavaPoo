@@ -1,4 +1,5 @@
 package org.example;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,21 +8,33 @@ import java.util.ArrayList;
 
 class StockProduct implements Stockable {
     private ArrayList<Product> inventory = new ArrayList<>();
+    private Save save = new Save();
+
+    public StockProduct(Save save) {
+        this.save = save;
+        save.setStockProduct(this);
+        if (this.inventory == null) {
+            this.inventory = new ArrayList<>();
+        }
+    }
+
+
 
     @Override
     public void addProduct(String name, int quantity, Double price, String categoryName) {
         if ((price > 0) && (quantity > 0)) {
             if ((name != null && !name.isEmpty()) && (categoryName != null && !categoryName.isEmpty())) {
                 Product product = new Product(name, quantity, price, categoryName);
+
                 inventory.add(product);
-                System.out.println("Produit ajouté avec succès !");
+                System.out.println("Produit ajouté et sauvegardé avec succès !");
             } else {
                 System.out.println("Problème pendant l'ajout du produit.");
             }
         }
     }
 
-    public void addProductRequest() {
+    public Product productRequest() {
         Scanner scanner = new Scanner(System.in);
 
         String name;
@@ -65,12 +78,16 @@ class StockProduct implements Stockable {
             System.out.println("La catégorie ne peut pas être vide.");
         }
 
-        addProduct(name, quantity, price, categoryName);
-        System.out.println("Produit ajouté avec succès !");
+        return new Product(name, quantity, price, categoryName);
     }
 
-    public void removeProductOrder(int id,int quantity) {
+    public void addProductRequest() {
+        addProduct(this.productRequest().getName(),this.productRequest().getQuantity(),this.productRequest().getPrice(),this.productRequest().getCategory().getName());
+    }
 
+    //permet de retirer des produits après la validation d'une commande
+    public void removeProductOrder(int id,int quantity) {
+        //compare la quantité de produits dans l'inventaire par rapport à la quantité de produits commandés
         if (inventory.get(id).getQuantity()<quantity) {
             System.out.println("Pas assez de "+inventory.get(id).getName()+"!");
         } else {
@@ -84,9 +101,6 @@ class StockProduct implements Stockable {
                 }
             }
         }
-
-        //inventory.remove(id);
-
     }
 
     @Override
@@ -107,9 +121,17 @@ class StockProduct implements Stockable {
             }
         }
         if (product!=null) {
-            System.out.println("Le produit " + product.getName() + " à été supprimé avec succès!");
+            System.out.println("Le produit " + product.getName() + " à été supprimé et sauvegardé avec succès!");
             inventory.remove(product);
         }
+    }
+
+    public void removeProductRequest() {
+        this.showProducts();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer l'ID du produit que vous souhaiter supprimer.");
+        int answer = Integer.parseInt(scanner.nextLine().trim());
+        removeProduct(answer);
     }
 
     public void showProducts() {
@@ -196,4 +218,24 @@ class StockProduct implements Stockable {
 public ArrayList<Product> getInventory() {
         return inventory;
 }
+
+
+    public void addStocktosave(String name, int quantity, Double price, String categoryName) throws IOException {
+        addProduct(name, quantity, price, categoryName);
+        System.out.println("chamas");
+        refreshstocksave();
+        //save.setInventory(inventory);
+    }
+
+    public void refreshstocksave() throws IOException {
+        save.setInventory(inventory);
+        save.setsavetext();
+    }
+
+    public void removeProductOrderSave(int id,int quantity) throws IOException {
+        removeProductOrder(id, quantity);
+        refreshstocksave();
+    }
+
+
 }
